@@ -1,13 +1,12 @@
-//controla das rotas
+const Atendimento = require('../models/atendimentos')
 
 module.exports = app => {
-        //requisição GET(pegar dados)
-      app.get('/atendimentos', (req, res) => res.send('Você está na rota de atendimento, e está realizando um GET'))   
+    app.get('/atendimentos', (req, res) => res.send('Você está na rota de atendimentos e está realizando um GET'))
 
-      //requisição POST(enviar dados)
-      app.post('/atendimentos', (req, res) => {
-              //imprime a requisição
-              console.log(req.body)
-              res.send('Você está na rota de atendimento, e está realizando um POST')
-        })
+    app.post('/atendimentos', (req, res) => {
+        const atendimento = req.body
+
+        Atendimento.adiciona(atendimento)
+        res.send('Post atendimento')
+    })
 }
